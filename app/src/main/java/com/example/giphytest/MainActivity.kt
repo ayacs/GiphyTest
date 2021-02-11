@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(R.layout.main_activity) {
             constraints.applyTo(parentView)
         }
 
-        searchInput.setOnEditorActionListener { view, actionId, event ->
+        searchInput.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_NULL || actionId == EditorInfo.IME_ACTION_GO) {
                 dismissKeyboard()
                 performCustomSearch()
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity(R.layout.main_activity) {
                 GPHContent.searchQuery(searchInput.text.toString(), Config.mediaType)
     }
 
-    fun dismissKeyboard() {
+    private fun dismissKeyboard() {
         val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(searchInput.windowToken, 0)
     }
